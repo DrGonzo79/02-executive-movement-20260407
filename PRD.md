@@ -1,20 +1,23 @@
-# Product Requirements Document (PRD): B2B Executive Movement Arbitrage
+# B2B Executive Movement Arbitrage
 
-## 1. Overview
-B2B lead generation relies heavily on ZoomInfo and LinkedIn. However, newly hired executives (VP, CTO, CMO) often delay updating their LinkedIn profiles by 30-90 days while they settle into their new roles. 
+## 1. The Core Concept
+Selling software/services to newly hired executives before they update LinkedIn.
 
-## 2. Problem Statement
-The first 90 days of an executive's tenure are when 80% of their new software/tool purchasing decisions are made. If you wait for ZoomInfo to catch the update, you are late to the party.
+## 2. The Speed Gap (Information Lag)
+B2B lead generation relies almost entirely on LinkedIn and ZoomInfo. However, executives often wait weeks or months to update their profiles after taking a new role. A new VP of Sales or CTO makes 80% of their new software purchasing decisions in their first 90 days. The lag is between the actual hire and the LinkedIn update.
 
-## 3. Solution Concept
-An automated AI pipeline that monitors PR Newswire, SEC 8-K filings, and niche industry blogs. It uses LLMs to extract the executive's name, old role, new role, and company the moment the press release drops. It then infers their new corporate email and injects them straight into an automated outreach sequence.
+## 3. The AI Arbitrage Mechanism
+System continuously monitors SEC filings (8-K), press release wires (PR Newswire), and niche industry blogs. It uses AI to extract executive movement instantly, triggering highly personalized, automated cold email outreach congratulating them on the new role and pitching a relevant B2B SaaS tool, completely bypassing the crowded LinkedIn/ZoomInfo inbox.
 
-## 4. Technical Architecture
-* **AI/ML Engine (Python/FastAPI):** Scrapes RSS feeds, parses unstructured text with Claude/GPT-4 via Pydantic, and handles data validation.
-* **Frontend (React/TypeScript):** Live dashboard showing the scraped feed, extraction confidence scores, and one-click draft generation for cold emails.
-* **Infrastructure:** Dockerized services, GitHub Actions CI/CD for frontend deployment to GitHub Pages.
+## 4. Architecture & Core Automated Components
+- **Monitoring:** RSS feeds of SEC filings, PR wires, and Google News alerts.
+- **Decision Engine:** LLM extracts [Executive Name], [Old Role], [New Role], [Company].
+- **Execution:** API integration with Hunter.io/Apollo to guess their new email (first.last@newcompany.com), pushing directly to Instantly/Lemlist for automated outreach.
 
-## 5. Prototype Scope
-* Provide a working Python AI backend that simulates the LLM extraction pipeline.
-* Provide an interactive React (TypeScript) frontend that visualizes the scraping and data extraction process.
-* Provide a CI/CD pipeline that automatically deploys the frontend prototype to a live URL on push.
+## 5. Risk Profile & Compression Horizon
+Email deliverability (guessing new emails that haven't warmed up). Compression: 1-2 years until ZoomInfo integrates this real-time news extraction natively.
+
+## 6. Prototype Build (Day 1)
+1. Ingest PR Newswire RSS.
+2. Prompt Claude to detect 'hired', 'appointed', 'joins as'.
+3. Output a structured JSON of Name, Role, Company to a Google Sheet.
