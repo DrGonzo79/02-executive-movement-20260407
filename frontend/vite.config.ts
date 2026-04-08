@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // Setup for GitHub Pages deployment using the repo name
-  base: '/02-executive-movement-arbitrage-20260408/',
+  base: '/02-executive-movement-20260407/',
 })
